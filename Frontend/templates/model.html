@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock title %}
+
+{% block content %}
+
+<div class='bg-gray-800 text-white p-3 md:px-10 lg:px-20 xl:px-40 2xl:px-72'>
+    <div class='m-6'>
+        <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'> Sample <span class='bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400 text-transparent'>Model</span></p>
+        <p class='text-justify'>
+            &#128075; Hello!,<br><br>
+
+            This is just a Sample Model that gives the response from the ML/AI/NLP Model
+        </p>
+        <div class='my-10'>
+            <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Input</p>
+            <form class='flex-col p-5' action="/model" name="contactForm" method="POST" onsubmit="return validateForm()">
+                {% csrf_token %}
+                <div class='input_text'>
+                    <label for="input_text">Input keywords to generate a paragraph</label><br>
+                    <input class='p-3 w-full my-2 bg-gray-900 border-slate-700 rounded-lg' type="text" id="input_text" placeholder="Texas Snow ..." name="input_text">
+                </div>
+                <button type="submit" class='bg-blue-600 p-2 px-4 rounded-[6px] hover:bg-gray-800 hover:outline hover:outline-blue-600 transition delay-75 ease-in-out my-3'><i class="fa-regular fa-paper-plane"></i> Send</button>
+            </form>
+        </div>
+        {% if output %}
+        <div class='my-10'>
+            <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Output</p>
+            <div class='message'>
+                <label for="output">Here's the output</label><br>
+                <textarea class='p-3 resize-none w-full h-72 my-2 bg-gray-900 border-slate-700 rounded-lg' placeholder="Output" name="message">{{output}}</textarea>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
